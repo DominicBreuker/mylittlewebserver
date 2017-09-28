@@ -63,15 +63,17 @@ class HttpRequestParser(object):
 
     def _receive_http_header(self):
         while b"\r\n\r\n" not in self.request:
-            chunk = self.connection.recv(self.buffer_size)
-            self.request = b"".join([self.request, chunk])
+            self._read_request_chunk()
         return self.request.split(b"\r\n\r\n")[0].decode("utf-8")
 
     def _receive_http_body(self, content_length):
         while self._body_not_completely_parsed(content_length):
-            chunk = self.connection.recv(self.buffer_size)
-            self.request = b"".join([self.request, chunk])
-        return self.request.split(b"\r\n\r\n")[1].decode("utf-8")
+            self._read_request_chunk()
+        return self.request.split(b"\r\n\r\n", maxsplit=1)[1].decode("utf-8")
+
+    def _read_request_chunk(self):
+        chunk = self.connection.recv(self.buffer_size)
+        self.request = b"".join([self.request, chunk])
 
     def _body_not_completely_parsed(self, content_length):
         header_length = len(self.request.split(b"\r\n\r\n")[0])
