@@ -24,7 +24,7 @@ declare -A cmds=( ["http"]="python http_server.py" \
                   ["wsgi_example"]="python wsgi_server.py" \
                   ["flask"]="python wsgi_app_start.py flask_app:app" \
                   ["pyramid"]="python wsgi_app_start.py pyramid_app:app" \
-                  ["django"]="python wsgi_app_start.py django_appp:app" \
+                  ["django"]="python wsgi_app_start.py django_app:app" \
                   ["shell"]="/bin/sh")
 
 ##### RUN #####
