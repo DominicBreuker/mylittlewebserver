@@ -2,6 +2,8 @@
 
 [![Code Climate](https://codeclimate.com/github/DominicBreuker/mylittlewebserver.png)](https://codeclimate.com/github/DominicBreuker/mylittlewebserver)
 
+tiny little change
+
 Simple implementation of a web server.
 Written in Python.
 Not meant for any production use, only for (self-)educational purposes.
